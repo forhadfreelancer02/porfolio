@@ -267,7 +267,9 @@ body {
 
 .hero h2 {
     font-size: 2rem;
-    color: var(--text-secondary);
+    color: var(--text-primary);
+    -webkit-text-fill-color: unset;
+    background: none;
     margin-bottom: 1rem;
 }
 
@@ -363,6 +365,7 @@ body {
 .cursor {
     display: inline-block;
     color: var(--accent-color);
+    -webkit-text-fill-color: var(--accent-color);
     animation: blink 0.7s step-end infinite;
     font-weight: 300;
 }

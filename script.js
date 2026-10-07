@@ -10,7 +10,12 @@ window.addEventListener('load', () => {
 });
 
 // Typing Animation
-const texts = ['Web Developer', 'Frontend Developer', 'UI/UX Designer', 'Freelancer'];
+const texts = [
+    { first: 'Web', second: 'Developer' },
+    { first: 'Frontend', second: 'Developer' },
+    { first: 'UI/UX', second: 'Designer' },
+    { first: 'Freelancer', second: '' }
+];
 let textIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
@@ -18,18 +23,29 @@ const typingEl = document.getElementById('typing-text');
 
 function type() {
     const current = texts[textIndex];
+    const fullText = current.second ? current.first + ' ' + current.second : current.first;
 
     if (isDeleting) {
-        typingEl.textContent = current.substring(0, charIndex - 1);
         charIndex--;
     } else {
-        typingEl.textContent = current.substring(0, charIndex + 1);
         charIndex++;
     }
 
+    const typed = fullText.substring(0, charIndex);
+    const firstLen = current.first.length;
+
+    let html = '';
+    if (typed.length <= firstLen) {
+        html = `<span style="color:#22d3ee">${typed}</span>`;
+    } else {
+        html = `<span style="color:#22d3ee">${typed.substring(0, firstLen)}</span><span style="color:#a78bfa"> ${typed.substring(firstLen + 1)}</span>`;
+    }
+
+    typingEl.innerHTML = html;
+
     let speed = isDeleting ? 60 : 100;
 
-    if (!isDeleting && charIndex === current.length) {
+    if (!isDeleting && charIndex === fullText.length) {
         speed = 1800;
         isDeleting = true;
     } else if (isDeleting && charIndex === 0) {
