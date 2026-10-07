@@ -9,14 +9,39 @@ window.addEventListener('load', () => {
     }, 3000);
 });
 
-// Loading Screen
-window.addEventListener('load', () => {
-    setTimeout(() => {
-        const loader = document.getElementById('loader');
-        loader.classList.add('hide');
-        setTimeout(() => { loader.style.display = 'none'; }, 600);
-    }, 2500);
-});
+// Typing Animation
+const texts = ['Web Developer', 'Frontend Developer', 'UI/UX Designer', 'Freelancer'];
+let textIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+const typingEl = document.getElementById('typing-text');
+
+function type() {
+    const current = texts[textIndex];
+
+    if (isDeleting) {
+        typingEl.textContent = current.substring(0, charIndex - 1);
+        charIndex--;
+    } else {
+        typingEl.textContent = current.substring(0, charIndex + 1);
+        charIndex++;
+    }
+
+    let speed = isDeleting ? 60 : 100;
+
+    if (!isDeleting && charIndex === current.length) {
+        speed = 1800;
+        isDeleting = true;
+    } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        textIndex = (textIndex + 1) % texts.length;
+        speed = 400;
+    }
+
+    setTimeout(type, speed);
+}
+
+setTimeout(type, 1000);
 
 // Hamburger Menu Toggle
 const hamburger = document.querySelector('.hamburger');
