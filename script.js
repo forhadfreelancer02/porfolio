@@ -1,3 +1,23 @@
+// Loading Screen
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        const loader = document.getElementById('loader');
+        loader.classList.add('hide');
+        setTimeout(() => {
+            loader.style.display = 'none';
+        }, 800);
+    }, 3000);
+});
+
+// Loading Screen
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        const loader = document.getElementById('loader');
+        loader.classList.add('hide');
+        setTimeout(() => { loader.style.display = 'none'; }, 600);
+    }, 2500);
+});
+
 // Hamburger Menu Toggle
 const hamburger = document.querySelector('.hamburger');
 const navLinks = document.querySelector('.nav-links');
