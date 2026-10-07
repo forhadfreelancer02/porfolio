@@ -268,7 +268,6 @@ body {
 .hero h2 {
     font-size: 2rem;
     color: var(--text-primary);
-    -webkit-text-fill-color: unset;
     background: none;
     margin-bottom: 1rem;
 }
